@@ -153,6 +153,7 @@ end
 
 hs.hotkey.bind(hyper, "z", showAppKeystroke)
 hs.hotkey.bind(hyper, "s", function() hs.execute("open 'x-apple.systempreferences:'") end)
+hs.hints.hintChars = {"a","o","e","u","i","d","h","t","n","s","y","p","g","c"}
 hotkey.bind(hyper, '/', function() hs.hints.windowHints() end)
 hs.hotkey.bind(hyper, ".",
     function() hs.alert.show(string.format("App path:        %s\nApp name:      %s\nIM source id:  %s",

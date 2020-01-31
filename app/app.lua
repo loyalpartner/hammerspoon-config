@@ -3,7 +3,6 @@ local win = {'cmd', 'option' }
 local application = require 'hs.application'
 local hotkey = require 'hs.hotkey'
 local window = require 'hs.window'
-local event = require 'hs.eventtap.event'
 local fs = require 'hs.fs'
 local hints = require 'hs.hints'
 
@@ -95,11 +94,9 @@ function launchApp(appPath)
   application.launchOrFocus(appPath)
 end
 
-function keyStroke(modifier, character)
-    event.newKeyEvent(modifier, true):post()
-    event.newKeyEvent(character, true):post()
-    event.newKeyEvent(character, false):post()
-    event.newKeyEvent(modifier, false):post()
+function keyStroke(modifiers, character)
+    hs.eventtap.event.newKeyEvent(modifiers, string.lower(character), true):post()
+    hs.eventtap.event.newKeyEvent(modifiers, string.lower(character), false):post()
 end
 
 
@@ -120,11 +117,11 @@ function toggleApplication(app)
         local winnum = #app:allWindows()
         local mainwin = app:mainWindow()
         if hs.application.frontmostApplication() == app then
-            local mod = hs.keycodes.map.cmd
+            local mods = {"cmd"}
             if app:name() == "Emacs" then
-                mod = hs.keycodes.map.alt
+                mods = {"option"}
             end
-            keyStroke(mod, "`")
+            keyStroke(mods, "`")
         elseif mainwin then
             if app:isFrontmost() then
                 setInputMethod = false

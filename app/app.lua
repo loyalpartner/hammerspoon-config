@@ -95,10 +95,13 @@ function launchApp(appPath)
   application.launchOrFocus(appPath)
 end
 
-keyStroke = function(modifiers, character)
-    event.newKeyEvent(modifiers, string.lower(character), true):post()
-    event.newKeyEvent(modifiers, string.lower(character), false):post()
+function keyStroke(modifier, character)
+    hs.eventtap.event.newKeyEvent(modifier, true):post()
+    hs.eventtap.event.newKeyEvent(character, true):post()
+    hs.eventtap.event.newKeyEvent(character, false):post()
+    hs.eventtap.event.newKeyEvent(modifier, false):post()
 end
+
 
 -- Toggle an application between being the frontmost app, and being hidden
 function toggleApplication(app)
@@ -112,21 +115,16 @@ function toggleApplication(app)
     local setInputMethod = true
 
     if not app then
-        -- Application not running, launch app
         launchApp(appPath)
     else
-        -- Application running, toggle hide/unhide
-        -- application:activate(application:allWindows())
-
         local winnum = #app:allWindows()
         local mainwin = app:mainWindow()
         if hs.application.frontmostApplication() == app then
-            -- hs.window.switcher.new{app:name()}:nextWindow()
+            local mod = hs.keycodes.map.cmd
             if app:name() == "Emacs" then
-                keyStroke({'option'}, '`')
-            else
-                keyStroke({'cmd'}, '`')
+                mod = hs.keycodes.map.alt
             end
+            keyStroke(mod, "`")
         elseif mainwin then
             if app:isFrontmost() then
                 setInputMethod = false

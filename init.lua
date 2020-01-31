@@ -1,12 +1,11 @@
 hs.loadSpoon("SpoonInstall")
-
+hs.loadSpoon("ReloadConfiguration")
 Install=spoon.SpoonInstall
+
+spoon.ReloadConfiguration:start()
 
 hyper = { 'cmd','ctrl'}
 win = {'cmd', 'option' }
-
-local window = require 'hs.window'
-local speech = require 'hs.speech'
 
 require 'reload.reload'
 require 'app.app'

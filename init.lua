@@ -1,8 +1,5 @@
 hs.loadSpoon("SpoonInstall")
-hs.loadSpoon("ReloadConfiguration")
 Install=spoon.SpoonInstall
-
-spoon.ReloadConfiguration:start()
 
 hyper = { 'cmd','ctrl'}
 win = {'cmd', 'option' }

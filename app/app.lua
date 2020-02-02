@@ -11,8 +11,8 @@ hs.window.animationDuration = 0 -- don't waste time on animation when resize win
 
 -- Key to launch application.
 local key2App = {
-   n = {'/Applications/iTerm.app', 'English', 2},
-   t = {'/Applications/Microsoft Edge.app', 'English', 1},
+   n = {'/Applications/iTerm.app', 'Chinese', 2},
+   t = {'/Applications/Microsoft Edge.app', 'Chinese', 1},
    h = {'/Applications/Emacs.app', 'English', 2},
    l = {'/System/Library/CoreServices/Finder.app', 'English', 1},
    -- f = {'/Applications/Chromium.app', 'English', 1},
@@ -142,6 +142,7 @@ function toggleApplication(app)
         if inputMethod == 'English' then
             English()
         else
+            English()
             Chinese()
         end
     end

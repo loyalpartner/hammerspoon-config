@@ -61,6 +61,19 @@ local function English()
     hs.keycodes.currentSourceID("com.apple.keylayout.Dvorak")
 end
 
+-- Handle cursor focus and application's screen manage.
+function applicationWatcher(appName, eventType, appObject)
+    -- Move cursor to center of application when application activated.
+    -- Then don't need move cursor between screens.
+    if (eventType == hs.application.watcher.activated) then
+        -- Just adjust cursor postion if app open by user keyboard.
+        updateFocusAppInputMethod()
+    end
+end
+
+appWatcher = hs.application.watcher.new(applicationWatcher)
+appWatcher:start()
+
 function updateFocusAppInputMethod()
     for key, app in pairs(key2App) do
         local appPath = app[1]
@@ -138,14 +151,13 @@ function toggleApplication(app)
         end
     end
 
-    if setInputMethod then
-        if inputMethod == 'English' then
-            English()
-        else
-            English()
-            Chinese()
-        end
-    end
+    -- if setInputMethod then
+    --     if inputMethod == 'English' then
+    --         English()
+    --     else
+    --         Chinese()
+    --     end
+    -- end
 end
 
 

@@ -38,8 +38,8 @@ end
 
 
 -- Move application to screen.
-hs.hotkey.bind(hyper, "1", function() moveToScreen(hs.window.focusedWindow(), 1, true) end)
-hs.hotkey.bind(hyper, "2", function() moveToScreen(hs.window.focusedWindow(), 2, true) end)
+-- hs.hotkey.bind(hyper, "1", function() moveToScreen(hs.window.focusedWindow(), 1, true) end)
+-- hs.hotkey.bind(hyper, "2", function() moveToScreen(hs.window.focusedWindow(), 2, true) end)
 -- Window operations.
 hs.hotkey.bind(win, "1", function() window.focusedWindow():moveToUnit(layout.left50) end)
 hs.hotkey.bind(win, "2", function() window.focusedWindow():moveToUnit(layout.right50) end)

@@ -11,15 +11,12 @@ hs.window.animationDuration = 0 -- don't waste time on animation when resize win
 
 -- Key to launch application.
 local key2App = {
-   n = {'/Applications/iTerm.app', 'Chinese', 2},
+   n = {'/Applications/iTerm.app', 'English', 2},
    t = {'/Applications/Microsoft Edge.app', 'Chinese', 1},
    h = {'/Applications/Emacs.app', 'English', 2},
    l = {'/System/Library/CoreServices/Finder.app', 'English', 1},
-   -- f = {'/Applications/Chromium.app', 'English', 1},
    k = {'/Applications/Kindle.app', 'English', 2},
    w = {'/Applications/WeChat.app', 'Chinese', 1},
-   -- e = {'/Users/andy/fast-photo/node_modules/electron/dist/Electron.app', 'Chinese', 1},
-   -- a = {'/Applications/wechatwebdevtools.app', 'English', 2},
    d = {'/Applications/Dash.app', 'English', 1},
    -- s = {'x-apple.systempreferences:', 'English', 1},
    p = {'/Applications/Preview.app', 'Chinese', 2},
@@ -54,7 +51,7 @@ end
 
 -- Manage application's inputmethod status.
 local function Chinese()
-    hs.keycodes.currentSourceID("im.rime.inputmethod.Squirrel.Rime")
+    hs.keycodes.currentSourceID("com.apple.inputmethod.SCIM.Shuangpin")
 end
 
 local function English()
@@ -86,7 +83,7 @@ function updateFocusAppInputMethod()
                 Chinese()
             end
 
-            break
+            -- break
         end
     end
 end
@@ -149,6 +146,8 @@ function toggleApplication(app)
                 launchApp(appPath)
             end
         end
+
+        updateFocusAppInputMethod()
     end
 
     -- if setInputMethod then
